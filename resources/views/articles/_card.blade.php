@@ -5,7 +5,7 @@
 
 <a href="{{ route('articles.show', $article) }}"
    class="reveal group card-gta">
-    <div class="relative h-44 overflow-hidden">
+    <div class="relative aspect-video overflow-hidden">
         @if ($article->featured_image)
             <img src="{{ asset('storage/' . $article->featured_image) }}" alt="{{ $article->title }}"
                  class="h-full w-full object-cover transition duration-500 group-hover:scale-105">

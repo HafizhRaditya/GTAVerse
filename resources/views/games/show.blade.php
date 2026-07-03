@@ -15,6 +15,63 @@
 @endphp
 
 @section('content')
+{{-- ==================================================================
+     TEMA DINAMIS — halaman mengikuti warna tema & aksen game ini
+================================================================== --}}
+<style>
+    #game-page {
+        --gt: {{ $game->theme_color ?? '#22d3ee' }};   /* warna tema */
+        --ga: {{ $game->accent_color ?? '#ec4899' }};  /* warna aksen */
+    }
+
+    /* Ganti seluruh aksen cyan bawaan menjadi warna aksen game */
+    #game-page .text-cyan-400,
+    #game-page .hover\:text-cyan-400:hover,
+    #game-page .hover\:text-cyan-300:hover,
+    #game-page .group:hover .group-hover\:text-cyan-400 { color: var(--ga) !important; }
+
+    #game-page .text-cyan-400\/60 { color: color-mix(in srgb, var(--ga) 60%, transparent) !important; }
+
+    #game-page .neon-text {
+        text-shadow:
+            0 0 10px color-mix(in srgb, var(--ga) 50%, transparent),
+            0 0 22px color-mix(in srgb, var(--gt) 35%, transparent),
+            0 0 44px color-mix(in srgb, var(--ga) 18%, transparent);
+    }
+
+    #game-page .glass-panel { border-color: color-mix(in srgb, var(--ga) 22%, transparent); }
+
+    #game-page .card-gta:hover {
+        border-color: color-mix(in srgb, var(--ga) 45%, transparent);
+        box-shadow:
+            0 0 20px color-mix(in srgb, var(--ga) 15%, transparent),
+            0 0 40px color-mix(in srgb, var(--gt) 10%, transparent),
+            0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    #game-page .badge-universe {
+        border-color: color-mix(in srgb, var(--ga) 45%, transparent);
+        background: color-mix(in srgb, var(--gt) 22%, transparent);
+    }
+
+    #game-page .btn-ghost:hover {
+        background: color-mix(in srgb, var(--ga) 10%, transparent);
+        border-color: color-mix(in srgb, var(--ga) 40%, transparent);
+        box-shadow: 0 0 15px color-mix(in srgb, var(--ga) 18%, transparent);
+    }
+
+    #game-page .border-cyan-500\/15 { border-color: color-mix(in srgb, var(--ga) 20%, transparent) !important; }
+    #game-page .from-cyan-500 { --tw-gradient-from: var(--ga) !important; }
+</style>
+
+<div id="game-page">
+{{-- Latar halaman: gradien dominan dari warna tema & aksen game --}}
+<div class="pointer-events-none fixed inset-0 -z-10"
+     style="background:
+        radial-gradient(70% 55% at 85% 0%, color-mix(in srgb, var(--ga) 22%, transparent) 0%, transparent 60%),
+        radial-gradient(55% 45% at 8% 100%, color-mix(in srgb, var(--gt) 26%, transparent) 0%, transparent 58%),
+        #09090b;"></div>
+
 {{-- Hero detail game dengan efek parallax saat digulir --}}
 <section id="game-hero" class="relative flex h-[72vh] items-end overflow-hidden scanlines">
     <div id="game-hero-bg" class="absolute inset-0 scale-110">
@@ -32,6 +89,9 @@
         @endif
     </div>
     <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent"></div>
+    {{-- Semburat warna tema game di atas hero --}}
+    <div class="absolute inset-0"
+         style="background: linear-gradient(200deg, color-mix(in srgb, var(--ga) 14%, transparent) 0%, transparent 45%, color-mix(in srgb, var(--gt) 18%, transparent) 100%);"></div>
     <div class="bg-noise absolute inset-0 opacity-[0.05]"></div>
 
     <div class="relative z-10 mx-auto w-full max-w-7xl px-6 pb-14">
@@ -47,7 +107,7 @@
                 {{ $game->universe }} Universe
             </span>
             @if ($game->status === 'upcoming')
-                <span class="rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.25em] pulse-glow" style="background: linear-gradient(135deg, #0891b2, #ec4899);">Segera Hadir</span>
+                <span class="rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.25em] pulse-glow" style="background: linear-gradient(135deg, var(--gt), var(--ga));">Segera Hadir</span>
             @endif
         </div>
         <h1 class="mt-4 max-w-4xl font-display text-4xl uppercase leading-[0.95] neon-text sm:text-6xl lg:text-7xl">{{ $game->title }}</h1>
@@ -110,6 +170,7 @@
         </div>
     @endif
 </section>
+</div> {{-- /#game-page --}}
 @endsection
 
 @push('scripts')

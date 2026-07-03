@@ -205,36 +205,9 @@
                    class="text-xs font-bold uppercase tracking-widest text-cyan-400 hover:text-cyan-300 transition">Lihat Semua &rarr;</a>
             </div>
 
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
                 @foreach ($group['games'] as $game)
-                    <a href="{{ route('games.show', $game) }}"
-                       class="reveal group card-gta">
-                        <div class="relative h-44 overflow-hidden">
-                            @if ($game->cover_image)
-                                <img src="{{ asset('storage/' . $game->cover_image) }}" alt="{{ $game->title }}"
-                                     class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
-                            @elseif (isset($heroImages[$game->slug]))
-                                <img src="{{ $heroImages[$game->slug] }}" alt="{{ $game->title }}"
-                                     class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
-                            @else
-                                <div class="flex h-full items-center justify-center transition duration-500 group-hover:scale-105"
-                                     style="background: linear-gradient(135deg, {{ $game->theme_color }}, #09090b 90%);">
-                                    <span class="px-4 text-center font-display text-2xl uppercase leading-tight text-white/90">{{ $game->title }}</span>
-                                </div>
-                            @endif
-                            <span class="absolute right-3 top-3 rounded-full bg-zinc-950/70 px-3 py-1 text-[10px] font-bold uppercase tracking-widest backdrop-blur"
-                                  style="color: {{ $game->accent_color }}">{{ $game->universe }}</span>
-                            @if ($game->status === 'upcoming')
-                                <span class="absolute left-3 top-3 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest pulse-glow"
-                                      style="background: linear-gradient(135deg, #0891b2, #ec4899);">Segera</span>
-                            @endif
-                        </div>
-                        <div class="p-5">
-                            <p class="text-xs text-zinc-500">{{ $game->release_year ?? 'TBA' }} &middot; {{ $game->setting }}</p>
-                            <h4 class="mt-1 text-lg font-bold group-hover:text-cyan-400 transition">{{ $game->title }}</h4>
-                            <p class="mt-2 line-clamp-2 text-sm text-zinc-400">{{ $game->tagline }}</p>
-                        </div>
-                    </a>
+                    @include('games._card', ['game' => $game])
                 @endforeach
             </div>
         </div>
@@ -260,7 +233,7 @@
         @if ($headline)
             <a href="{{ route('articles.show', $headline) }}"
                class="reveal group mb-10 grid overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/70 md:grid-cols-2 transition hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(34,211,238,0.08)]">
-                <div class="relative min-h-[240px] overflow-hidden">
+                <div class="relative aspect-video min-h-[240px] overflow-hidden md:aspect-auto">
                     @if ($headline->featured_image)
                         <img src="{{ asset('storage/' . $headline->featured_image) }}" alt="{{ $headline->title }}"
                              class="h-full w-full object-cover transition duration-500 group-hover:scale-105">

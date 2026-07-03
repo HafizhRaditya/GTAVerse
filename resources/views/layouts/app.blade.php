@@ -25,6 +25,7 @@
                 <a href="{{ route('games.index') }}" class="transition hover:text-cyan-400 {{ request()->routeIs('games.*') ? 'text-cyan-400 neon-text' : 'text-zinc-300' }}">Games</a>
                 <a href="{{ route('articles.index') }}" class="transition hover:text-cyan-400 {{ request()->routeIs('articles.*') ? 'text-cyan-400 neon-text' : 'text-zinc-300' }}">Artikel</a>
                 <a href="{{ route('characters.index') }}" class="transition hover:text-cyan-400 {{ request()->routeIs('characters.*') ? 'text-cyan-400 neon-text' : 'text-zinc-300' }}">Karakter</a>
+                <a href="{{ route('messages.create') }}" class="transition hover:text-cyan-400 {{ request()->routeIs('messages.*') ? 'text-cyan-400 neon-text' : 'text-zinc-300' }}">Saran</a>
                 <a href="/admin" class="rounded-full border border-cyan-500/50 px-4 py-1.5 text-cyan-400 transition hover:bg-cyan-500/15 hover:shadow-[0_0_15px_rgba(34,211,238,0.25)]">Admin</a>
             </div>
 
@@ -42,6 +43,7 @@
                 <a href="{{ route('games.index') }}" class="py-2 text-zinc-200 hover:text-cyan-400">Games</a>
                 <a href="{{ route('articles.index') }}" class="py-2 text-zinc-200 hover:text-cyan-400">Artikel</a>
                 <a href="{{ route('characters.index') }}" class="py-2 text-zinc-200 hover:text-cyan-400">Karakter</a>
+                <a href="{{ route('messages.create') }}" class="py-2 text-zinc-200 hover:text-cyan-400">Kotak Saran</a>
                 <a href="/admin" class="py-2 text-cyan-400">Panel Admin</a>
             </div>
         </div>
@@ -76,6 +78,7 @@
                     <li><a href="{{ route('games.index') }}" class="transition hover:text-cyan-400">Semua Game</a></li>
                     <li><a href="{{ route('articles.index') }}" class="transition hover:text-cyan-400">Artikel &amp; Berita</a></li>
                     <li><a href="{{ route('characters.index') }}" class="transition hover:text-cyan-400">Profil Karakter</a></li>
+                    <li><a href="{{ route('messages.create') }}" class="transition hover:text-cyan-400">Kotak Saran</a></li>
                     <li><a href="/admin" class="transition hover:text-cyan-400">Panel Admin</a></li>
                 </ul>
             </div>
@@ -92,7 +95,7 @@
         <div class="section-divider"></div>
 
         <div class="relative z-10 py-5 text-center text-xs text-zinc-600">
-            &copy; {{ date('Y') }} GTA<span class="text-cyan-600">Verse</span> CMS — dibangun dengan Laravel, Filament &amp; Tailwind CSS.
+            &copy; {{ date('Y') }} GTA<span class="text-cyan-600">Verse</span> CMS — dibangun dengan Laravel &amp; Tailwind CSS.
         </div>
     </footer>
 

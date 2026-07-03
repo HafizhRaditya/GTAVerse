@@ -1,6 +1,6 @@
 <a href="{{ route('characters.show', $character) }}"
    class="reveal group card-gta">
-    <div class="relative flex h-48 items-center justify-center overflow-hidden"
+    <div class="relative flex aspect-[3/4] items-center justify-center overflow-hidden"
          style="background: linear-gradient(160deg, {{ $character->game?->theme_color ?? '#27272a' }}, #09090b 85%);">
         @if ($character->photo)
             <img src="{{ asset('storage/' . $character->photo) }}" alt="{{ $character->name }}"

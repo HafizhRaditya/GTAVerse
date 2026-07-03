@@ -11,7 +11,7 @@
 
 <a href="{{ route('games.show', $game) }}"
    class="reveal group card-gta">
-    <div class="relative h-44 overflow-hidden">
+    <div class="relative aspect-[3/4] overflow-hidden">
         @if ($game->cover_image)
             <img src="{{ asset('storage/' . $game->cover_image) }}" alt="{{ $game->title }}"
                  class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
