@@ -25,7 +25,7 @@ class Game extends Model
         ];
     }
 
-    /* ================= Relasi ================= */
+    /* ================= Relationships ================= */
 
     public function characters(): HasMany
     {

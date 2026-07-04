@@ -32,8 +32,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Hanya user dengan flag is_admin yang boleh mengakses panel Filament (/admin).
-     * Metode ini akan dipanggil oleh Filament jika terinstal.
+     * Only users with the is_admin flag may access the admin panel (/admin).
      */
     public function canAccessPanel($panel): bool
     {

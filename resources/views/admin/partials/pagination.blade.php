@@ -1,18 +1,18 @@
 @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="Navigasi halaman" class="flex items-center justify-between gap-4">
+    <nav role="navigation" aria-label="Page navigation" class="flex items-center justify-between gap-4">
         <p class="text-xs text-zinc-500">
-            Menampilkan {{ $paginator->firstItem() }}–{{ $paginator->lastItem() }} dari {{ $paginator->total() }} data
+            Showing {{ $paginator->firstItem() }}–{{ $paginator->lastItem() }} of {{ $paginator->total() }} entries
         </p>
 
         <div class="flex items-center gap-1.5">
-            {{-- Tombol sebelumnya --}}
+            {{-- Previous button --}}
             @if ($paginator->onFirstPage())
                 <span class="flex h-8 w-8 cursor-not-allowed items-center justify-center rounded-full border border-white/10 text-zinc-600">&lsaquo;</span>
             @else
                 <a href="{{ $paginator->previousPageUrl() }}" class="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-500/30 text-cyan-400 transition hover:bg-cyan-500/15">&lsaquo;</a>
             @endif
 
-            {{-- Nomor halaman --}}
+            {{-- Page numbers --}}
             @foreach ($elements as $element)
                 @if (is_string($element))
                     <span class="px-1 text-zinc-600">{{ $element }}</span>
@@ -30,7 +30,7 @@
                 @endif
             @endforeach
 
-            {{-- Tombol berikutnya --}}
+            {{-- Next button --}}
             @if ($paginator->hasMorePages())
                 <a href="{{ $paginator->nextPageUrl() }}" class="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-500/30 text-cyan-400 transition hover:bg-cyan-500/15">&rsaquo;</a>
             @else

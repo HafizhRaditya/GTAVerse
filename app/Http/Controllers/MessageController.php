@@ -22,14 +22,14 @@ class MessageController extends Controller
             'subject' => ['nullable', 'string', 'max:255'],
             'body'    => ['required', 'string', 'max:5000'],
         ], [
-            'name.required' => 'Nama wajib diisi.',
-            'body.required' => 'Pesan atau saran wajib diisi.',
-            'email.email'   => 'Format email tidak valid.',
+            'name.required' => 'Name is required.',
+            'body.required' => 'A message or suggestion is required.',
+            'email.email'   => 'The email format is invalid.',
         ]);
 
         Message::create($data);
 
         return redirect()->route('messages.create')
-            ->with('success', 'Terima kasih! Saran Anda telah terkirim dan akan kami baca.');
+            ->with('success', 'Thank you! Your suggestion has been sent and we will read it.');
     }
 }

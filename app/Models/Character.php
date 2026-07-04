@@ -40,7 +40,7 @@ class Character extends Model
         return 'slug';
     }
 
-    /** Inisial nama untuk avatar monogram bila foto belum diunggah. */
+    /** Name initials for the monogram avatar when no photo has been uploaded. */
     public function getInitialsAttribute(): string
     {
         return collect(explode(' ', $this->name))

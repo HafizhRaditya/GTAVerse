@@ -22,8 +22,8 @@
     <div class="p-5">
         <p class="text-xs text-zinc-500">
             {{ $article->published_at?->format('d M Y') }}
-            &middot; {{ $article->reading_time }} mnt baca
-            &middot; {{ number_format($article->views, 0, ',', '.') }}x dibaca
+            &middot; {{ $article->reading_time }} min read
+            &middot; {{ number_format($article->views) }} views
         </p>
         <h3 class="mt-2 line-clamp-2 font-bold leading-snug group-hover:text-cyan-400 transition">{{ $article->title }}</h3>
         <p class="mt-2 line-clamp-2 text-sm text-zinc-400">{{ $article->excerpt }}</p>

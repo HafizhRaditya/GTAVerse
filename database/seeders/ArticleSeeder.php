@@ -16,69 +16,84 @@ class ArticleSeeder extends Seeder
         $author     = User::where('is_admin', true)->first();
         $categories = Category::pluck('id', 'slug');
 
+        // 'legacy_slug' holds the old Indonesian slug so existing rows are
+        // updated in place (keeping images and view counts) instead of duplicated.
         $articles = [
             [
-                'title'    => 'Hitung Mundur GTA VI: Semua yang Perlu Kamu Tahu Menjelang 19 November 2026',
-                'category' => 'berita', 'game' => 'gta-vi', 'is_headline' => true,
+                'title'    => 'GTA VI Countdown: Everything You Need to Know Ahead of November 19, 2026',
+                'legacy_slug' => 'hitung-mundur-gta-vi-semua-yang-perlu-kamu-tahu-menjelang-19-november-2026',
+                'category' => 'news', 'game' => 'gta-vi', 'is_headline' => true,
                 'published_at' => now()->subDays(2),
-                'excerpt'  => 'Setelah penantian lebih dari satu dekade, Grand Theft Auto VI akhirnya dijadwalkan rilis 19 November 2026. Berikut rangkuman lengkap fakta yang sudah dikonfirmasi.',
-                'body'     => '<p>Penantian panjang para penggemar akhirnya mendekati garis akhir. Rockstar Games menetapkan <strong>19 November 2026</strong> sebagai tanggal rilis Grand Theft Auto VI untuk PlayStation 5 dan Xbox Series X|S, setelah sempat mengalami penundaan dari jadwal awal.</p><p>GTA VI membawa seri kembali ke Vice City, kali ini sebagai bagian dari negara bagian fiksi Leonida yang terinspirasi Florida. Untuk pertama kalinya dalam sejarah seri utama, pemain akan mengendalikan dua protagonis sekaligus: Jason Duval dan Lucia Caminos, pasangan kriminal dengan dinamika ala Bonnie dan Clyde.</p><p>Trailer perdananya memecahkan berbagai rekor penayangan di YouTube hanya dalam hitungan jam, sementara trailer kedua memperlihatkan lebih dalam hubungan Jason dan Lucia serta kehidupan pesisir Leonida yang cerah namun berbahaya. Pre-order sendiri telah dibuka sejak akhir Juni 2026.</p><p>Redaksi GTAVerse akan terus memperbarui halaman ini setiap ada informasi resmi baru dari Rockstar. Pantau terus!</p>',
+                'excerpt'  => 'After more than a decade of waiting, Grand Theft Auto VI is finally scheduled for release on November 19, 2026. Here is a full rundown of everything confirmed so far.',
+                'body'     => '<p>The long wait is finally approaching the finish line. Rockstar Games has set <strong>November 19, 2026</strong> as the release date for Grand Theft Auto VI on PlayStation 5 and Xbox Series X|S, after a delay from the original schedule.</p><p>GTA VI brings the series back to Vice City, this time as part of the fictional, Florida-inspired state of Leonida. For the first time in mainline series history, players will control two protagonists: Jason Duval and Lucia Caminos, a criminal couple with a Bonnie-and-Clyde dynamic.</p><p>The debut trailer shattered YouTube viewing records within hours, while the second trailer offered a deeper look at Jason and Lucia\'s relationship and Leonida\'s sunny yet dangerous coastal life. Pre-orders have been open since late June 2026.</p><p>The GTAVerse editorial team will keep updating this page whenever new official information arrives from Rockstar. Stay tuned!</p>',
             ],
             [
-                'title'    => '25 Tahun GTA III: Game yang Mengubah Segalanya',
-                'category' => 'fitur', 'game' => 'gta-iii', 'is_headline' => false,
+                'title'    => '25 Years of GTA III: The Game That Changed Everything',
+                'legacy_slug' => '25-tahun-gta-iii-game-yang-mengubah-segalanya',
+                'category' => 'features', 'game' => 'gta-iii', 'is_headline' => false,
                 'published_at' => now()->subDays(5),
-                'excerpt'  => 'Oktober 2026 menandai seperempat abad sejak GTA III mendefinisikan ulang genre dunia terbuka. Kami menengok kembali warisannya.',
-                'body'     => '<p>Ketika Grand Theft Auto III meluncur pada 22 Oktober 2001, tidak ada yang benar-benar siap dengan dampaknya. Perpindahan dari perspektif top-down ke dunia tiga dimensi penuh mengubah Liberty City dari sekadar peta menjadi kota yang terasa hidup.</p><p>Formula "sandbox kriminal" yang diperkenalkannya — kebebasan menjelajah, misi non-linear, radio dalam kendaraan, dan dunia yang bereaksi terhadap pemain — menjadi cetak biru bagi ratusan game sesudahnya. Sulit membayangkan genre open-world modern tanpa fondasi yang diletakkan game ini.</p><p>Dua puluh lima tahun kemudian, jejaknya masih terasa di setiap entri seri, termasuk GTA VI yang akan rilis bulan November ini. Claude mungkin tidak pernah berbicara, tetapi game yang ia bintangi berbicara sangat lantang bagi industri.</p>',
+                'excerpt'  => 'October 2026 marks a quarter century since GTA III redefined the open-world genre. We look back at its legacy.',
+                'body'     => '<p>When Grand Theft Auto III launched on October 22, 2001, nobody was truly prepared for its impact. The shift from a top-down perspective to a fully three-dimensional world transformed Liberty City from a mere map into a city that felt alive.</p><p>The "criminal sandbox" formula it introduced — freedom to explore, non-linear missions, in-car radio stations, and a world that reacts to the player — became the blueprint for hundreds of games that followed. It is hard to imagine the modern open-world genre without the foundation this game laid.</p><p>Twenty-five years later, its fingerprints are still visible on every entry in the series, including GTA VI arriving this November. Claude may never have spoken, but the game he starred in spoke very loudly for the entire industry.</p>',
             ],
             [
-                'title'    => 'Mengapa Vice City Tetap Menjadi Atmosfer Terbaik dalam Sejarah GTA',
-                'category' => 'fitur', 'game' => 'gta-vice-city', 'is_headline' => false,
+                'title'    => 'Why Vice City Still Has the Best Atmosphere in GTA History',
+                'legacy_slug' => 'mengapa-vice-city-tetap-menjadi-atmosfer-terbaik-dalam-sejarah-gta',
+                'category' => 'features', 'game' => 'gta-vice-city', 'is_headline' => false,
                 'published_at' => now()->subDays(8),
-                'excerpt'  => 'Neon merah muda, musik synthwave, dan matahari terbenam tanpa akhir. Vice City membuktikan bahwa atmosfer bisa menjadi karakter utama.',
-                'body'     => '<p>Ada alasan mengapa setiap kali Rockstar menggoda kembalinya Vice City, internet langsung riuh. Kota tropis yang dirilis tahun 2002 itu bukan sekadar latar — ia adalah surat cinta untuk dekade 1980-an yang berlebihan dalam segala hal.</p><p>Dari pantulan lampu neon di aspal basah hingga deretan lagu di stasiun radio fiksinya, Vice City membangun suasana yang belum tertandingi entri lain. Kisah Tommy Vercetti yang menapak dari pesuruh menjadi raja kota terasa seperti film gangster klasik yang bisa dimainkan.</p><p>Dengan GTA VI yang membawa kita kembali ke kota ini dalam balutan Leonida modern, menarik untuk melihat apakah nuansa magis itu bisa hadir kembali dalam versi masa kini — atau justru melahirkan identitas baru yang sama ikoniknya.</p>',
+                'excerpt'  => 'Pink neon, synthwave music, and endless sunsets. Vice City proved that atmosphere can be the main character.',
+                'body'     => '<p>There is a reason the internet erupts every time Rockstar teases a return to Vice City. The tropical city released in 2002 was never just a backdrop — it was a love letter to the gloriously excessive 1980s.</p><p>From neon reflections on wet asphalt to the track list of its fictional radio stations, Vice City built an atmosphere no other entry has matched. Tommy Vercetti\'s rise from errand boy to king of the city plays like a classic gangster film you can control.</p><p>With GTA VI taking us back to this city in its modern Leonida form, it will be fascinating to see whether that magic can return in a present-day setting — or whether it will forge a new identity that is just as iconic.</p>',
             ],
             [
-                'title'    => 'GTA V Masih Laris Manis: Tembus Lebih dari 215 Juta Kopi',
-                'category' => 'berita', 'game' => 'gta-v', 'is_headline' => false,
+                'title'    => 'GTA V Is Still Selling Strong: Over 215 Million Copies Shipped',
+                'legacy_slug' => 'gta-v-masih-laris-manis-tembus-lebih-dari-215-juta-kopi',
+                'category' => 'news', 'game' => 'gta-v', 'is_headline' => false,
                 'published_at' => now()->subDays(12),
-                'excerpt'  => 'Tiga belas tahun setelah rilis, penjualan GTA V terus bertambah dan mengukuhkannya sebagai salah satu produk hiburan terlaris sepanjang masa.',
-                'body'     => '<p>Grand Theft Auto V terus menolak untuk melambat. Berdasarkan laporan keuangan terbaru Take-Two Interactive, game yang pertama kali rilis pada 2013 ini telah terjual lebih dari 215 juta kopi di seluruh dunia — angka yang menjadikannya salah satu game terlaris sepanjang masa, hanya di bawah Minecraft.</p><p>Faktor terbesar di balik umur panjangnya jelas GTA Online, yang selama lebih dari satu dekade terus menerima pembaruan konten, mode baru, dan event komunitas. Perilisan ulang di tiga generasi konsol berbeda juga menjaga arus pemain baru tetap mengalir.</p><p>Menariknya, alih-alih menurun menjelang kedatangan GTA VI, antusiasme terhadap semesta Los Santos justru ikut terkerek naik. Banyak pemain lama kembali untuk bernostalgia sebelum berpindah ke Leonida akhir tahun ini.</p>',
+                'excerpt'  => 'Thirteen years after release, GTA V sales keep climbing, cementing it as one of the best-selling entertainment products of all time.',
+                'body'     => '<p>Grand Theft Auto V simply refuses to slow down. According to Take-Two Interactive\'s latest financial report, the game first released in 2013 has now sold more than 215 million copies worldwide — a figure that makes it one of the best-selling games of all time, second only to Minecraft.</p><p>The biggest factor behind its longevity is clearly GTA Online, which has received content updates, new modes, and community events for over a decade. Re-releases across three console generations have also kept new players flowing in.</p><p>Interestingly, rather than declining ahead of GTA VI\'s arrival, enthusiasm for the Los Santos universe has risen with it. Many longtime players are returning for one more nostalgic run before moving to Leonida at the end of this year.</p>',
             ],
             [
-                'title'    => 'Peringkat Protagonis GTA Versi Redaksi: Dari Claude hingga Trevor',
-                'category' => 'ulasan', 'game' => null, 'is_headline' => false,
+                'title'    => 'Ranking the GTA Protagonists: From Claude to Trevor',
+                'legacy_slug' => 'peringkat-protagonis-gta-versi-redaksi-dari-claude-hingga-trevor',
+                'category' => 'reviews', 'game' => null, 'is_headline' => false,
                 'published_at' => now()->subDays(15),
-                'excerpt'  => 'Lima belas protagonis, dua semesta, satu perdebatan abadi. Redaksi GTAVerse menyusun peringkat karakter utama favorit sepanjang seri.',
-                'body'     => '<p>Setiap penggemar GTA punya jagoannya masing-masing, dan perdebatan soal protagonis terbaik tidak pernah benar-benar selesai. Setelah diskusi panjang (dan beberapa adu argumen), redaksi menyusun daftar versi kami.</p><p>Di papan atas, Niko Bellic dan CJ nyaris tidak terpisahkan: Niko unggul lewat kisah imigran yang kelam dan penuh dilema moral, sementara CJ membawa perjalanan emosional dari Grove Street hingga puncak San Andreas. Tommy Vercetti menyusul berkat karisma dan transformasinya menjadi raja Vice City.</p><p>Trio GTA V menawarkan dinamika unik — dengan Trevor sebagai karakter paling tak terlupakan sekaligus paling kontroversial. Sementara itu, Claude yang membisu tetap ikonik sebagai wajah revolusi 3D. Bagaimana dengan Jason dan Lucia? Kita tunggu pembuktiannya November nanti.</p><p>Setuju atau tidak dengan urutan kami? Sampaikan versimu di kanal komunitas GTAVerse!</p>',
+                'excerpt'  => 'Fifteen protagonists, two universes, one eternal debate. The GTAVerse editorial team ranks the series\' leading characters.',
+                'body'     => '<p>Every GTA fan has a favorite, and the debate over the best protagonist never truly ends. After long discussions (and a few heated arguments), the editorial team has put together our ranking.</p><p>At the top, Niko Bellic and CJ are nearly inseparable: Niko leads with a dark immigrant story full of moral dilemmas, while CJ carries an emotional journey from Grove Street to the top of San Andreas. Tommy Vercetti follows thanks to his charisma and transformation into the king of Vice City.</p><p>The GTA V trio offers a unique dynamic — with Trevor as the most unforgettable and most controversial character of all. Meanwhile, the silent Claude remains iconic as the face of the 3D revolution. As for Jason and Lucia? We\'ll find out in November.</p><p>Agree or disagree with our order? Share your version through the GTAVerse suggestion box!</p>',
             ],
             [
-                'title'    => 'Panduan Pemula GTA San Andreas: Tips Bertahan di Grove Street',
-                'category' => 'panduan', 'game' => 'gta-san-andreas', 'is_headline' => false,
+                'title'    => 'GTA San Andreas Beginner\'s Guide: Tips for Surviving Grove Street',
+                'legacy_slug' => 'panduan-pemula-gta-san-andreas-tips-bertahan-di-grove-street',
+                'category' => 'guides', 'game' => 'gta-san-andreas', 'is_headline' => false,
                 'published_at' => now()->subDays(20),
-                'excerpt'  => 'Baru pertama kali memainkan San Andreas di 2026? Berikut tips dasar agar perjalanan CJ dari Los Santos hingga Las Venturas berjalan mulus.',
-                'body'     => '<p>Lebih dari dua dekade sejak rilisnya, San Andreas tetap menjadi gerbang favorit bagi pemain baru yang ingin mencicipi era klasik GTA. Berikut beberapa tips dari redaksi untuk memulai.</p><p><strong>Pertama, jangan abaikan statistik CJ.</strong> Berbeda dari entri lain, San Andreas memiliki sistem RPG ringan: stamina, otot, dan kemampuan mengemudi meningkat seiring dipakai. Rutin berlari, berenang, dan berlatih di gym sejak awal akan sangat memudahkan misi-misi belakangan.</p><p><strong>Kedua, kuasai wilayah secara bertahap.</strong> Perang wilayah (gang war) memberi pemasukan pasif, tetapi jangan serakah — wilayah yang terlalu luas sulit dipertahankan di awal permainan. <strong>Ketiga, simpan permainan sesering mungkin</strong> di safehouse, karena beberapa misi legendaris (halo, "Wrong Side of the Tracks") terkenal menguji kesabaran.</p><p>Terakhir, nikmati saja. San Andreas dirancang untuk dijelajahi tanpa buru-buru — dari pedesaan berkabut hingga gemerlap Las Venturas.</p>',
+                'excerpt'  => 'Playing San Andreas for the first time in 2026? Here are the essential tips to keep CJ\'s journey from Los Santos to Las Venturas running smoothly.',
+                'body'     => '<p>More than two decades after its release, San Andreas remains the favorite gateway for new players wanting a taste of the classic GTA era. Here are some tips from the editorial team to get you started.</p><p><strong>First, don\'t ignore CJ\'s stats.</strong> Unlike other entries, San Andreas has a light RPG system: stamina, muscle, and driving skill improve with use. Running, swimming, and hitting the gym early on will make later missions much easier.</p><p><strong>Second, take over territory gradually.</strong> Gang wars provide passive income, but don\'t get greedy — territory that is too large is hard to defend early in the game. <strong>Third, save your game as often as possible</strong> at a safehouse, because some legendary missions (hello, "Wrong Side of the Tracks") are famous tests of patience.</p><p>Finally, just enjoy it. San Andreas is designed to be explored without hurry — from misty countryside to the glitter of Las Venturas.</p>',
             ],
         ];
 
         foreach ($articles as $data) {
             $game = $data['game'] ? Game::where('slug', $data['game'])->first() : null;
+            $slug = Str::slug($data['title']);
 
-            Article::updateOrCreate(
-                ['slug' => Str::slug($data['title'])],
-                [
-                    'user_id'        => $author->id,
-                    'category_id'    => $categories[$data['category']] ?? null,
-                    'game_id'        => $game?->id,
-                    'title'          => $data['title'],
-                    'excerpt'        => $data['excerpt'],
-                    'body'           => $data['body'],
-                    'status'         => 'published',
-                    'published_at'   => $data['published_at'],
-                    'views'          => random_int(150, 4200),
-                    'is_headline'    => $data['is_headline'],
-                ]
-            );
+            $payload = [
+                'user_id'      => $author->id,
+                'category_id'  => $categories[$data['category']] ?? null,
+                'game_id'      => $game?->id,
+                'title'        => $data['title'],
+                'slug'         => $slug,
+                'excerpt'      => $data['excerpt'],
+                'body'         => $data['body'],
+                'status'       => 'published',
+                'published_at' => $data['published_at'],
+                'is_headline'  => $data['is_headline'],
+            ];
+
+            $existing = Article::whereIn('slug', [$slug, $data['legacy_slug']])->first();
+
+            if ($existing) {
+                // Update in place: keep the featured image and view count.
+                $existing->update($payload);
+            } else {
+                Article::create($payload + ['views' => random_int(150, 4200)]);
+            }
         }
     }
 }

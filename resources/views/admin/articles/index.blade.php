@@ -1,36 +1,36 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Kelola Artikel')
+@section('title', 'Manage Articles')
 
 @section('content')
     <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-            <h1 class="font-display text-3xl uppercase tracking-wide">Kelola <span class="text-gta-accent">Artikel</span></h1>
-            <p class="mt-2 text-sm text-zinc-400">Berita dan artikel yang tampil di portal GTAVerse.</p>
+            <h1 class="font-display text-3xl uppercase tracking-wide">Manage <span class="text-gta-accent">Articles</span></h1>
+            <p class="mt-2 text-sm text-zinc-400">News and articles published on the GTAVerse portal.</p>
         </div>
-        <a href="{{ route('admin.articles.create') }}" class="btn-primary">+ Tulis Artikel</a>
+        <a href="{{ route('admin.articles.create') }}" class="btn-primary">+ Write Article</a>
     </div>
 
     <form method="GET" class="mb-6 flex flex-wrap gap-3">
-        <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari judul / isi artikel…" class="form-input max-w-xs">
+        <input type="text" name="q" value="{{ request('q') }}" placeholder="Search title / article body…" class="form-input max-w-xs">
         <select name="status" class="form-input w-auto">
-            <option value="">Semua Status</option>
-            <option value="draft" @selected(request('status') === 'draft')>Draf</option>
-            <option value="published" @selected(request('status') === 'published')>Terbit</option>
+            <option value="">All Statuses</option>
+            <option value="draft" @selected(request('status') === 'draft')>Draft</option>
+            <option value="published" @selected(request('status') === 'published')>Published</option>
         </select>
-        <button type="submit" class="btn-ghost !px-5 !py-2.5">Cari</button>
+        <button type="submit" class="btn-ghost !px-5 !py-2.5">Search</button>
     </form>
 
     <div class="glass-panel overflow-x-auto">
         <table class="admin-table w-full">
             <thead>
                 <tr>
-                    <th>Gambar</th>
-                    <th>Judul</th>
-                    <th>Kategori</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Category</th>
                     <th>Status</th>
-                    <th>Terbit</th>
-                    <th>Dibaca</th>
+                    <th>Published</th>
+                    <th>Views</th>
                     <th>Headline</th>
                     <th></th>
                 </tr>
@@ -56,7 +56,7 @@
                         </td>
                         <td>
                             <span class="badge-admin {{ $article->status === 'published' ? 'badge-green' : 'badge-gray' }}">
-                                {{ $article->status === 'published' ? 'Terbit' : 'Draf' }}
+                                {{ $article->status === 'published' ? 'Published' : 'Draft' }}
                             </span>
                         </td>
                         <td class="text-zinc-400">{{ $article->published_at?->format('d M Y H:i') ?? '—' }}</td>
@@ -66,16 +66,16 @@
                             <div class="flex justify-end gap-2">
                                 <a href="{{ route('admin.articles.edit', $article) }}" class="btn-admin-sm btn-edit">Edit</a>
                                 <form method="POST" action="{{ route('admin.articles.destroy', $article) }}"
-                                      onsubmit="return confirm('Hapus artikel \'{{ addslashes($article->title) }}\'?')">
+                                      onsubmit="return confirm('Delete the article \'{{ addslashes($article->title) }}\'?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-admin-sm btn-delete">Hapus</button>
+                                    <button type="submit" class="btn-admin-sm btn-delete">Delete</button>
                                 </form>
                             </div>
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="8" class="py-10 text-center text-zinc-500">Belum ada artikel. <a href="{{ route('admin.articles.create') }}" class="text-cyan-400 hover:underline">Tulis sekarang</a>.</td></tr>
+                    <tr><td colspan="8" class="py-10 text-center text-zinc-500">No articles yet. <a href="{{ route('admin.articles.create') }}" class="text-cyan-400 hover:underline">Write one now</a>.</td></tr>
                 @endforelse
             </tbody>
         </table>

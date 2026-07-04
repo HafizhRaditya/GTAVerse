@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class EnsureUserIsAdmin
 {
     /**
-     * Hanya user login dengan flag is_admin yang boleh mengakses panel admin.
+     * Only authenticated users with the is_admin flag may access the admin panel.
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -17,7 +17,7 @@ class EnsureUserIsAdmin
             return redirect()->route('admin.login');
         }
 
-        abort_unless($request->user()->is_admin, 403, 'Akun Anda tidak memiliki akses admin.');
+        abort_unless($request->user()->is_admin, 403, 'Your account does not have admin access.');
 
         return $next($request);
     }

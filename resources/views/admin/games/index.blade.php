@@ -1,38 +1,38 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Kelola Game')
+@section('title', 'Manage Games')
 
 @section('content')
     <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-            <h1 class="font-display text-3xl uppercase tracking-wide">Kelola <span class="text-gta-accent">Game</span></h1>
-            <p class="mt-2 text-sm text-zinc-400">Katalog game GTA — dari 3D Universe hingga HD Universe.</p>
+            <h1 class="font-display text-3xl uppercase tracking-wide">Manage <span class="text-gta-accent">Games</span></h1>
+            <p class="mt-2 text-sm text-zinc-400">The GTA game catalog — from the 3D Universe to the HD Universe.</p>
         </div>
-        <a href="{{ route('admin.games.create') }}" class="btn-primary">+ Tambah Game</a>
+        <a href="{{ route('admin.games.create') }}" class="btn-primary">+ Add Game</a>
     </div>
 
-    {{-- Pencarian & filter --}}
+    {{-- Search & filter --}}
     <form method="GET" class="mb-6 flex flex-wrap gap-3">
-        <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari judul game…"
+        <input type="text" name="q" value="{{ request('q') }}" placeholder="Search game titles…"
                class="form-input max-w-xs">
         <select name="universe" class="form-input w-auto">
-            <option value="">Semua Universe</option>
+            <option value="">All Universes</option>
             <option value="3D" @selected(request('universe') === '3D')>3D Universe</option>
             <option value="HD" @selected(request('universe') === 'HD')>HD Universe</option>
         </select>
-        <button type="submit" class="btn-ghost !px-5 !py-2.5">Cari</button>
+        <button type="submit" class="btn-ghost !px-5 !py-2.5">Search</button>
     </form>
 
     <div class="glass-panel overflow-x-auto">
         <table class="admin-table w-full">
             <thead>
                 <tr>
-                    <th>Sampul</th>
-                    <th>Judul</th>
+                    <th>Cover</th>
+                    <th>Title</th>
                     <th>Universe</th>
-                    <th>Rilis</th>
+                    <th>Release</th>
                     <th>Status</th>
-                    <th>Unggulan</th>
+                    <th>Featured</th>
                     <th></th>
                 </tr>
             </thead>
@@ -52,7 +52,7 @@
                         <td class="text-zinc-400">{{ $game->release_date?->format('d M Y') ?? '—' }}</td>
                         <td>
                             <span class="badge-admin {{ $game->status === 'released' ? 'badge-green' : 'badge-gray' }}">
-                                {{ $game->status === 'released' ? 'Rilis' : 'Segera' }}
+                                {{ $game->status === 'released' ? 'Released' : 'Upcoming' }}
                             </span>
                         </td>
                         <td>{{ $game->is_featured ? '★' : '—' }}</td>
@@ -60,16 +60,16 @@
                             <div class="flex justify-end gap-2">
                                 <a href="{{ route('admin.games.edit', $game) }}" class="btn-admin-sm btn-edit">Edit</a>
                                 <form method="POST" action="{{ route('admin.games.destroy', $game) }}"
-                                      onsubmit="return confirm('Hapus game \'{{ addslashes($game->title) }}\'? Seluruh karakter game ini juga akan ikut terhapus.')">
+                                      onsubmit="return confirm('Delete the game \'{{ addslashes($game->title) }}\'? All of its characters will be deleted as well.')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-admin-sm btn-delete">Hapus</button>
+                                    <button type="submit" class="btn-admin-sm btn-delete">Delete</button>
                                 </form>
                             </div>
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="7" class="py-10 text-center text-zinc-500">Belum ada game. <a href="{{ route('admin.games.create') }}" class="text-cyan-400 hover:underline">Tambah sekarang</a>.</td></tr>
+                    <tr><td colspan="7" class="py-10 text-center text-zinc-500">No games yet. <a href="{{ route('admin.games.create') }}" class="text-cyan-400 hover:underline">Add one now</a>.</td></tr>
                 @endforelse
             </tbody>
         </table>

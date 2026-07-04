@@ -47,7 +47,7 @@ class CharacterController extends Controller
         $character = Character::create($data);
 
         return redirect()->route('admin.characters.index')
-            ->with('success', "Karakter \"{$character->name}\" berhasil ditambahkan.");
+            ->with('success', "Character \"{$character->name}\" was added successfully.");
     }
 
     public function edit(Character $character): View
@@ -78,7 +78,7 @@ class CharacterController extends Controller
         $character->update($data);
 
         return redirect()->route('admin.characters.index')
-            ->with('success', "Karakter \"{$character->name}\" berhasil diperbarui.");
+            ->with('success', "Character \"{$character->name}\" was updated successfully.");
     }
 
     public function destroy(Character $character): RedirectResponse
@@ -91,7 +91,7 @@ class CharacterController extends Controller
         $character->delete();
 
         return redirect()->route('admin.characters.index')
-            ->with('success', "Karakter \"{$name}\" berhasil dihapus.");
+            ->with('success', "Character \"{$name}\" was deleted successfully.");
     }
 
     private function validated(Request $request, ?Character $character = null): array

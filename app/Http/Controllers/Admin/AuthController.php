@@ -29,7 +29,7 @@ class AuthController extends Controller
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()
                 ->withInput($request->only('email'))
-                ->withErrors(['email' => 'Email atau kata sandi salah.']);
+                ->withErrors(['email' => 'Incorrect email or password.']);
         }
 
         if (! Auth::user()->is_admin) {
@@ -39,7 +39,7 @@ class AuthController extends Controller
 
             return back()
                 ->withInput($request->only('email'))
-                ->withErrors(['email' => 'Akun Anda tidak memiliki akses admin.']);
+                ->withErrors(['email' => 'Your account does not have admin access.']);
         }
 
         $request->session()->regenerate();

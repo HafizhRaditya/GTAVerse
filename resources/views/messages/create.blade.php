@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Kotak Saran — GTAVerse')
-@section('meta_description', 'Sampaikan saran, kritik, atau masukan Anda untuk GTAVerse.')
+@section('title', 'Suggestion Box — GTAVerse')
+@section('meta_description', 'Share your suggestions, feedback, or ideas for GTAVerse.')
 
 @section('content')
 <section class="mx-auto max-w-7xl px-6 pb-24 pt-36">
     <div class="reveal mx-auto max-w-2xl text-center">
-        <p class="text-xs font-bold uppercase tracking-[0.3em] text-cyan-400">Masukan Anda</p>
-        <h1 class="mt-3 font-display text-5xl uppercase sm:text-6xl">Kotak <span class="text-gta-accent">Saran</span></h1>
+        <p class="text-xs font-bold uppercase tracking-[0.3em] text-cyan-400">Your Feedback</p>
+        <h1 class="mt-3 font-display text-5xl uppercase sm:text-6xl">Suggestion <span class="text-gta-accent">Box</span></h1>
         <p class="mt-4 text-zinc-400">
-            Punya saran, kritik, koreksi konten, atau ide fitur untuk GTAVerse?
-            Tulis di sini — setiap pesan masuk langsung ke redaksi kami.
+            Have a suggestion, feedback, content correction, or feature idea for GTAVerse?
+            Write it here — every message goes straight to our editorial team.
         </p>
     </div>
 
@@ -39,35 +39,35 @@
 
             <div class="grid gap-5 sm:grid-cols-2">
                 <div>
-                    <label for="name" class="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-300/70">Nama *</label>
+                    <label for="name" class="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-300/70">Name *</label>
                     <input id="name" type="text" name="name" value="{{ old('name') }}" required maxlength="255"
                            class="w-full rounded-xl border border-white/10 bg-zinc-900/70 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 transition focus:border-cyan-500/60 focus:outline-none focus:ring-1 focus:ring-cyan-500/40"
-                           placeholder="Nama kamu">
+                           placeholder="Your name">
                 </div>
                 <div>
-                    <label for="email" class="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-300/70">Email <span class="normal-case text-zinc-500">(opsional)</span></label>
+                    <label for="email" class="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-300/70">Email <span class="normal-case text-zinc-500">(optional)</span></label>
                     <input id="email" type="email" name="email" value="{{ old('email') }}" maxlength="255"
                            class="w-full rounded-xl border border-white/10 bg-zinc-900/70 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 transition focus:border-cyan-500/60 focus:outline-none focus:ring-1 focus:ring-cyan-500/40"
-                           placeholder="email@contoh.com">
+                           placeholder="email@example.com">
                 </div>
             </div>
 
             <div>
-                <label for="subject" class="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-300/70">Subjek <span class="normal-case text-zinc-500">(opsional)</span></label>
+                <label for="subject" class="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-300/70">Subject <span class="normal-case text-zinc-500">(optional)</span></label>
                 <input id="subject" type="text" name="subject" value="{{ old('subject') }}" maxlength="255"
                        class="w-full rounded-xl border border-white/10 bg-zinc-900/70 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 transition focus:border-cyan-500/60 focus:outline-none focus:ring-1 focus:ring-cyan-500/40"
-                       placeholder="contoh: Saran fitur, koreksi artikel…">
+                       placeholder="e.g. Feature suggestion, article correction…">
             </div>
 
             <div>
-                <label for="body" class="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-300/70">Pesan / Saran *</label>
+                <label for="body" class="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-300/70">Message / Suggestion *</label>
                 <textarea id="body" name="body" rows="6" required maxlength="5000"
                           class="w-full rounded-xl border border-white/10 bg-zinc-900/70 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 transition focus:border-cyan-500/60 focus:outline-none focus:ring-1 focus:ring-cyan-500/40"
-                          placeholder="Tulis saran atau masukanmu di sini…">{{ old('body') }}</textarea>
-                <p class="mt-1.5 text-xs text-zinc-600">Maksimal 5.000 karakter.</p>
+                          placeholder="Write your suggestion or feedback here…">{{ old('body') }}</textarea>
+                <p class="mt-1.5 text-xs text-zinc-600">Maximum 5,000 characters.</p>
             </div>
 
-            <button type="submit" class="btn-primary w-full sm:w-auto">Kirim Saran</button>
+            <button type="submit" class="btn-primary w-full sm:w-auto">Send Suggestion</button>
         </form>
     </div>
 </section>

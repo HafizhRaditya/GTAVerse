@@ -28,7 +28,7 @@ class CategoryController extends Controller
         $category = Category::create($this->validated($request));
 
         return redirect()->route('admin.categories.index')
-            ->with('success', "Kategori \"{$category->name}\" berhasil ditambahkan.");
+            ->with('success', "Category \"{$category->name}\" was added successfully.");
     }
 
     public function edit(Category $category): View
@@ -47,7 +47,7 @@ class CategoryController extends Controller
         $category->update($data);
 
         return redirect()->route('admin.categories.index')
-            ->with('success', "Kategori \"{$category->name}\" berhasil diperbarui.");
+            ->with('success', "Category \"{$category->name}\" was updated successfully.");
     }
 
     public function destroy(Category $category): RedirectResponse
@@ -56,7 +56,7 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->route('admin.categories.index')
-            ->with('success', "Kategori \"{$name}\" berhasil dihapus.");
+            ->with('success', "Category \"{$name}\" was deleted successfully.");
     }
 
     private function validated(Request $request, ?Category $category = null): array

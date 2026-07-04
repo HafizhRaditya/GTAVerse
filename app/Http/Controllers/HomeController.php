@@ -10,14 +10,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Game unggulan untuk hero slider & bagian scroll journey (animasi saat digulir)
+        // Featured games for the hero slider & scroll journey section
         $featuredGames = Game::featured()->ordered()->get();
 
-        // Katalog game per universe
+        // Game catalog per universe
         $threeDGames = Game::universe('3D')->ordered()->get();
         $hdGames     = Game::universe('HD')->ordered()->get();
 
-        // Artikel
+        // Articles
         $headline       = Article::published()->where('is_headline', true)->latest('published_at')->first();
         $latestArticles = Article::published()
             ->when($headline, fn ($q) => $q->where('id', '!=', $headline->id))
@@ -26,7 +26,7 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        // Karakter protagonis untuk bagian teaser
+        // Protagonist characters for the teaser section
         $protagonists = Character::protagonists()
             ->with('game')
             ->orderBy('sort_order')

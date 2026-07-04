@@ -52,7 +52,7 @@ class ArticleController extends Controller
         $article = Article::create($data);
 
         return redirect()->route('admin.articles.index')
-            ->with('success', "Artikel \"{$article->title}\" berhasil ditambahkan.");
+            ->with('success', "Article \"{$article->title}\" was added successfully.");
     }
 
     public function edit(Article $article): View
@@ -88,7 +88,7 @@ class ArticleController extends Controller
         $article->update($data);
 
         return redirect()->route('admin.articles.index')
-            ->with('success', "Artikel \"{$article->title}\" berhasil diperbarui.");
+            ->with('success', "Article \"{$article->title}\" was updated successfully.");
     }
 
     public function destroy(Article $article): RedirectResponse
@@ -101,7 +101,7 @@ class ArticleController extends Controller
         $article->delete();
 
         return redirect()->route('admin.articles.index')
-            ->with('success', "Artikel \"{$title}\" berhasil dihapus.");
+            ->with('success', "Article \"{$title}\" was deleted successfully.");
     }
 
     private function validated(Request $request, ?Article $article = null): array

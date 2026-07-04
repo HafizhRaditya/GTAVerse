@@ -10,11 +10,11 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Akun administrator default untuk panel Filament (/admin)
+        // Default administrator account for the admin panel (/admin)
         User::updateOrCreate(
             ['email' => 'admin@gtaverse.test'],
             [
-                'name'     => 'Administrator GTAVerse',
+                'name'     => 'GTAVerse Administrator',
                 'password' => Hash::make('password'),
                 'is_admin' => true,
             ]

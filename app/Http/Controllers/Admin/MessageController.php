@@ -42,11 +42,11 @@ class MessageController extends Controller
     {
         $message->update(['is_read' => ! $message->is_read]);
 
-        // Saat ditandai belum dibaca, kembali ke daftar — halaman detail
-        // akan otomatis menandainya dibaca lagi jika dibuka ulang.
+        // When marking as unread, go back to the list — the detail page
+        // would automatically mark it as read again if reopened.
         return $message->is_read
-            ? back()->with('success', 'Pesan ditandai sudah dibaca.')
-            : redirect()->route('admin.messages.index')->with('success', 'Pesan ditandai belum dibaca.');
+            ? back()->with('success', 'Message marked as read.')
+            : redirect()->route('admin.messages.index')->with('success', 'Message marked as unread.');
     }
 
     public function destroy(Message $message): RedirectResponse
@@ -54,6 +54,6 @@ class MessageController extends Controller
         $message->delete();
 
         return redirect()->route('admin.messages.index')
-            ->with('success', 'Pesan berhasil dihapus.');
+            ->with('success', 'Message deleted successfully.');
     }
 }

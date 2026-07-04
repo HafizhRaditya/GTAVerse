@@ -1,37 +1,37 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Kelola Karakter')
+@section('title', 'Manage Characters')
 
 @section('content')
     <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-            <h1 class="font-display text-3xl uppercase tracking-wide">Kelola <span class="text-gta-accent">Karakter</span></h1>
-            <p class="mt-2 text-sm text-zinc-400">Ensiklopedia karakter dari seluruh seri GTA.</p>
+            <h1 class="font-display text-3xl uppercase tracking-wide">Manage <span class="text-gta-accent">Characters</span></h1>
+            <p class="mt-2 text-sm text-zinc-400">The character encyclopedia across the entire GTA series.</p>
         </div>
-        <a href="{{ route('admin.characters.create') }}" class="btn-primary">+ Tambah Karakter</a>
+        <a href="{{ route('admin.characters.create') }}" class="btn-primary">+ Add Character</a>
     </div>
 
     <form method="GET" class="mb-6 flex flex-wrap gap-3">
-        <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama karakter…" class="form-input max-w-xs">
+        <input type="text" name="q" value="{{ request('q') }}" placeholder="Search character names…" class="form-input max-w-xs">
         <select name="game" class="form-input w-auto">
-            <option value="">Semua Game</option>
+            <option value="">All Games</option>
             @foreach ($games as $game)
                 <option value="{{ $game->id }}" @selected(request('game') == $game->id)>{{ $game->title }}</option>
             @endforeach
         </select>
-        <button type="submit" class="btn-ghost !px-5 !py-2.5">Cari</button>
+        <button type="submit" class="btn-ghost !px-5 !py-2.5">Search</button>
     </form>
 
     <div class="glass-panel overflow-x-auto">
         <table class="admin-table w-full">
             <thead>
                 <tr>
-                    <th>Foto</th>
-                    <th>Nama</th>
+                    <th>Photo</th>
+                    <th>Name</th>
                     <th>Game</th>
-                    <th>Peran</th>
-                    <th>Pengisi Suara</th>
-                    <th>Protagonis</th>
+                    <th>Role</th>
+                    <th>Voice Actor</th>
+                    <th>Protagonist</th>
                     <th></th>
                 </tr>
             </thead>
@@ -61,16 +61,16 @@
                             <div class="flex justify-end gap-2">
                                 <a href="{{ route('admin.characters.edit', $character) }}" class="btn-admin-sm btn-edit">Edit</a>
                                 <form method="POST" action="{{ route('admin.characters.destroy', $character) }}"
-                                      onsubmit="return confirm('Hapus karakter \'{{ addslashes($character->name) }}\'?')">
+                                      onsubmit="return confirm('Delete the character \'{{ addslashes($character->name) }}\'?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-admin-sm btn-delete">Hapus</button>
+                                    <button type="submit" class="btn-admin-sm btn-delete">Delete</button>
                                 </form>
                             </div>
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="7" class="py-10 text-center text-zinc-500">Belum ada karakter. <a href="{{ route('admin.characters.create') }}" class="text-cyan-400 hover:underline">Tambah sekarang</a>.</td></tr>
+                    <tr><td colspan="7" class="py-10 text-center text-zinc-500">No characters yet. <a href="{{ route('admin.characters.create') }}" class="text-cyan-400 hover:underline">Add one now</a>.</td></tr>
                 @endforelse
             </tbody>
         </table>

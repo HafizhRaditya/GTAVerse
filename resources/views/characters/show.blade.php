@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
-@section('title', $character->name . ' — Profil Karakter GTAVerse')
+@section('title', $character->name . ' — GTAVerse Character Profile')
 @section('meta_description', \Illuminate\Support\Str::limit($character->bio, 150))
 
 @section('content')
 <section class="mx-auto max-w-6xl px-6 pb-24 pt-36">
     <nav class="reveal mb-8 text-xs uppercase tracking-widest text-zinc-400">
-        <a href="{{ route('home') }}" class="hover:text-cyan-400 transition">Beranda</a>
+        <a href="{{ route('home') }}" class="hover:text-cyan-400 transition">Home</a>
         <span class="mx-2">/</span>
-        <a href="{{ route('characters.index') }}" class="hover:text-cyan-400 transition">Karakter</a>
+        <a href="{{ route('characters.index') }}" class="hover:text-cyan-400 transition">Characters</a>
         <span class="mx-2">/</span>
         <span class="text-zinc-200">{{ $character->name }}</span>
     </nav>
 
     <div class="grid gap-10 md:grid-cols-[320px,1fr]">
-        {{-- Foto / monogram --}}
+        {{-- Photo / monogram --}}
         <div class="reveal">
             <div class="relative flex aspect-[3/4] items-center justify-center overflow-hidden rounded-3xl border border-white/10"
                  style="background:
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        {{-- Detail --}}
+        {{-- Details --}}
         <div class="reveal">
             @if ($character->game)
                 <a href="{{ route('games.show', $character->game) }}"
@@ -48,9 +48,9 @@
 
             <dl class="mt-8 grid gap-4 sm:grid-cols-3">
                 @foreach ([
-                    'Peran'         => $character->role,
-                    'Pengisi Suara' => $character->voice_actor ?? 'Tidak ada / tidak bersuara',
-                    'Debut'         => $character->game?->release_year ?? '-',
+                    'Role'        => $character->role,
+                    'Voice Actor' => $character->voice_actor ?? 'None / unvoiced',
+                    'Debut'       => $character->game?->release_year ?? '-',
                 ] as $label => $value)
                     <div class="glass-panel p-4">
                         <dt class="text-[10px] font-bold uppercase tracking-[0.25em] text-cyan-400/60">{{ $label }}</dt>
@@ -59,7 +59,7 @@
                 @endforeach
             </dl>
 
-            <h2 class="mt-10 font-display text-xl uppercase">Biografi</h2>
+            <h2 class="mt-10 font-display text-xl uppercase">Biography</h2>
             <div class="mt-1 h-px w-16 bg-gradient-to-r from-cyan-500 to-transparent"></div>
             <p class="mt-3 whitespace-pre-line leading-relaxed text-zinc-300">{{ $character->bio }}</p>
         </div>
@@ -69,7 +69,7 @@
         <div class="mt-20">
             <div class="section-divider mb-10"></div>
             <h2 class="reveal mb-7 border-b border-cyan-500/15 pb-4 font-display text-2xl uppercase">
-                Karakter Lain dari {{ $character->game?->title }}
+                Other Characters from {{ $character->game?->title }}
             </h2>
             <div class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
                 @foreach ($others as $other)

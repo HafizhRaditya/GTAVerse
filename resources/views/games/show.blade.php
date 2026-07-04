@@ -16,15 +16,15 @@
 
 @section('content')
 {{-- ==================================================================
-     TEMA DINAMIS — halaman mengikuti warna tema & aksen game ini
+     DYNAMIC THEME — the page follows this game's theme & accent colors
 ================================================================== --}}
 <style>
     #game-page {
-        --gt: {{ $game->theme_color ?? '#22d3ee' }};   /* warna tema */
-        --ga: {{ $game->accent_color ?? '#ec4899' }};  /* warna aksen */
+        --gt: {{ $game->theme_color ?? '#22d3ee' }};   /* theme color */
+        --ga: {{ $game->accent_color ?? '#ec4899' }};  /* accent color */
     }
 
-    /* Ganti seluruh aksen cyan bawaan menjadi warna aksen game */
+    /* Replace the default cyan accents with this game's accent color */
     #game-page .text-cyan-400,
     #game-page .hover\:text-cyan-400:hover,
     #game-page .hover\:text-cyan-300:hover,
@@ -65,14 +65,14 @@
 </style>
 
 <div id="game-page">
-{{-- Latar halaman: gradien dominan dari warna tema & aksen game --}}
+{{-- Page background: dominant gradient from the game's theme & accent colors --}}
 <div class="pointer-events-none fixed inset-0 -z-10"
      style="background:
         radial-gradient(70% 55% at 85% 0%, color-mix(in srgb, var(--ga) 22%, transparent) 0%, transparent 60%),
         radial-gradient(55% 45% at 8% 100%, color-mix(in srgb, var(--gt) 26%, transparent) 0%, transparent 58%),
         #09090b;"></div>
 
-{{-- Hero detail game dengan efek parallax saat digulir --}}
+{{-- Game detail hero with parallax effect on scroll --}}
 <section id="game-hero" class="relative flex h-[72vh] items-end overflow-hidden scanlines">
     <div id="game-hero-bg" class="absolute inset-0 scale-110">
         @if ($game->hero_image)
@@ -89,14 +89,14 @@
         @endif
     </div>
     <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent"></div>
-    {{-- Semburat warna tema game di atas hero --}}
+    {{-- Game theme color tint over the hero --}}
     <div class="absolute inset-0"
          style="background: linear-gradient(200deg, color-mix(in srgb, var(--ga) 14%, transparent) 0%, transparent 45%, color-mix(in srgb, var(--gt) 18%, transparent) 100%);"></div>
     <div class="bg-noise absolute inset-0 opacity-[0.05]"></div>
 
     <div class="relative z-10 mx-auto w-full max-w-7xl px-6 pb-14">
         <nav class="mb-5 text-xs uppercase tracking-widest text-zinc-400">
-            <a href="{{ route('home') }}" class="hover:text-cyan-400 transition">Beranda</a>
+            <a href="{{ route('home') }}" class="hover:text-cyan-400 transition">Home</a>
             <span class="mx-2">/</span>
             <a href="{{ route('games.index') }}" class="hover:text-cyan-400 transition">Games</a>
             <span class="mx-2">/</span>
@@ -107,7 +107,7 @@
                 {{ $game->universe }} Universe
             </span>
             @if ($game->status === 'upcoming')
-                <span class="rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.25em] pulse-glow" style="background: linear-gradient(135deg, var(--gt), var(--ga));">Segera Hadir</span>
+                <span class="rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.25em] pulse-glow" style="background: linear-gradient(135deg, var(--gt), var(--ga));">Coming Soon</span>
             @endif
         </div>
         <h1 class="mt-4 max-w-4xl font-display text-4xl uppercase leading-[0.95] neon-text sm:text-6xl lg:text-7xl">{{ $game->title }}</h1>
@@ -116,13 +116,13 @@
 </section>
 
 <section class="mx-auto max-w-7xl px-6 py-16">
-    {{-- Informasi ringkas --}}
+    {{-- Quick facts --}}
     <div class="reveal grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         @foreach ([
-            'Tanggal Rilis' => $game->release_date?->format('d F Y') ?? 'Belum diumumkan',
-            'Platform'      => $game->platforms ?? '-',
-            'Latar'         => $game->setting ?? '-',
-            'Status'        => $game->status === 'released' ? 'Sudah Rilis' : 'Akan Datang',
+            'Release Date' => $game->release_date?->format('d F Y') ?? 'Not announced yet',
+            'Platforms'    => $game->platforms ?? '-',
+            'Setting'      => $game->setting ?? '-',
+            'Status'       => $game->status === 'released' ? 'Released' : 'Upcoming',
         ] as $label => $value)
             <div class="glass-panel p-5">
                 <p class="text-[10px] font-bold uppercase tracking-[0.25em] text-cyan-400/60">{{ $label }}</p>
@@ -131,20 +131,20 @@
         @endforeach
     </div>
 
-    {{-- Deskripsi --}}
+    {{-- Description --}}
     <div class="reveal mt-14 max-w-3xl">
-        <h2 class="font-display text-2xl uppercase">Tentang Game Ini</h2>
+        <h2 class="font-display text-2xl uppercase">About This Game</h2>
         <div class="mt-1 h-px w-16 bg-gradient-to-r from-cyan-500 to-transparent"></div>
         <p class="mt-4 leading-relaxed text-zinc-300">{{ $game->description }}</p>
     </div>
 
-    {{-- Karakter dari game ini --}}
+    {{-- Characters from this game --}}
     @if ($game->characters->isNotEmpty())
         <div class="mt-16">
             <div class="reveal mb-7 flex items-end justify-between border-b border-cyan-500/15 pb-4">
-                <h2 class="font-display text-2xl uppercase">Karakter Utama</h2>
+                <h2 class="font-display text-2xl uppercase">Main Characters</h2>
                 <a href="{{ route('characters.index', ['game' => $game->slug]) }}"
-                   class="text-xs font-bold uppercase tracking-widest text-cyan-400 hover:text-cyan-300 transition">Semua Karakter &rarr;</a>
+                   class="text-xs font-bold uppercase tracking-widest text-cyan-400 hover:text-cyan-300 transition">All Characters &rarr;</a>
             </div>
             <div class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
                 @foreach ($game->characters as $character)
@@ -154,13 +154,13 @@
         </div>
     @endif
 
-    {{-- Artikel terkait --}}
+    {{-- Related articles --}}
     @if ($articles->isNotEmpty())
         <div class="mt-16">
             <div class="reveal mb-7 flex items-end justify-between border-b border-cyan-500/15 pb-4">
-                <h2 class="font-display text-2xl uppercase">Berita Terkait</h2>
+                <h2 class="font-display text-2xl uppercase">Related News</h2>
                 <a href="{{ route('articles.index') }}"
-                   class="text-xs font-bold uppercase tracking-widest text-cyan-400 hover:text-cyan-300 transition">Semua Artikel &rarr;</a>
+                   class="text-xs font-bold uppercase tracking-widest text-cyan-400 hover:text-cyan-300 transition">All Articles &rarr;</a>
             </div>
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach ($articles as $article)
@@ -177,7 +177,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     if (!window.gsap || !window.ScrollTrigger) return;
-    // Parallax latar hero saat digulir
+    // Parallax hero background on scroll
     gsap.to('#game-hero-bg', {
         yPercent: 18,
         ease: 'none',

@@ -11,7 +11,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $search   = $request->query('q');
-        $category = $request->query('kategori');
+        $category = $request->query('category');
 
         $articles = Article::published()
             ->with(['category', 'game'])
@@ -30,7 +30,7 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        // Artikel draft tidak boleh diakses publik
+        // Draft articles must not be publicly accessible
         abort_unless(
             $article->status === 'published'
                 && $article->published_at
@@ -38,7 +38,7 @@ class ArticleController extends Controller
             404
         );
 
-        // Penghitung jumlah dibaca (views)
+        // View counter
         $article->increment('views');
 
         $related = Article::published()

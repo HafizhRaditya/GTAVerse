@@ -1,12 +1,12 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Edit Artikel')
+@section('title', 'Edit Article')
 
 @section('content')
     <div class="mb-8 flex flex-wrap items-end justify-between gap-3">
-        <h1 class="font-display text-3xl uppercase tracking-wide">Edit <span class="text-gta-accent">Artikel</span></h1>
+        <h1 class="font-display text-3xl uppercase tracking-wide">Edit <span class="text-gta-accent">Article</span></h1>
         @if ($article->status === 'published')
-            <a href="{{ route('articles.show', $article) }}" target="_blank" class="text-xs font-bold uppercase tracking-widest text-cyan-400 hover:underline">Lihat halaman publik ↗</a>
+            <a href="{{ route('articles.show', $article) }}" target="_blank" class="text-xs font-bold uppercase tracking-widest text-cyan-400 hover:underline">View public page ↗</a>
         @endif
     </div>
 

@@ -42,7 +42,7 @@ class GameController extends Controller
         $game = Game::create($data);
 
         return redirect()->route('admin.games.index')
-            ->with('success', "Game \"{$game->title}\" berhasil ditambahkan.");
+            ->with('success', "Game \"{$game->title}\" was added successfully.");
     }
 
     public function edit(Game $game): View
@@ -72,7 +72,7 @@ class GameController extends Controller
         $game->update($data);
 
         return redirect()->route('admin.games.index')
-            ->with('success', "Game \"{$game->title}\" berhasil diperbarui.");
+            ->with('success', "Game \"{$game->title}\" was updated successfully.");
     }
 
     public function destroy(Game $game): RedirectResponse
@@ -87,7 +87,7 @@ class GameController extends Controller
         $game->delete();
 
         return redirect()->route('admin.games.index')
-            ->with('success', "Game \"{$title}\" berhasil dihapus.");
+            ->with('success', "Game \"{$title}\" was deleted successfully.");
     }
 
     private function validated(Request $request, ?Game $game = null): array

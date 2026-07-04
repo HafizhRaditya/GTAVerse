@@ -28,7 +28,7 @@
               style="color: {{ $game->accent_color }}">{{ $game->universe }}</span>
         @if ($game->status === 'upcoming')
             <span class="absolute left-3 top-3 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest pulse-glow"
-                  style="background: linear-gradient(135deg, #0891b2, #ec4899);">Segera</span>
+                  style="background: linear-gradient(135deg, #0891b2, #ec4899);">Soon</span>
         @endif
     </div>
     <div class="p-5">

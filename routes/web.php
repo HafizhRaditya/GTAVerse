@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Rute Publik GTAVerse
+| GTAVerse Public Routes
 |--------------------------------------------------------------------------
-| Panel admin tersedia di /admin (login: /admin/login).
+| The admin panel is available at /admin (login: /admin/login).
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -20,20 +20,25 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/games', [GameController::class, 'index'])->name('games.index');
 Route::get('/games/{game:slug}', [GameController::class, 'show'])->name('games.show');
 
-Route::get('/artikel', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('/artikel/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
 
-Route::get('/karakter', [CharacterController::class, 'index'])->name('characters.index');
-Route::get('/karakter/{character:slug}', [CharacterController::class, 'show'])->name('characters.show');
+Route::get('/characters', [CharacterController::class, 'index'])->name('characters.index');
+Route::get('/characters/{character:slug}', [CharacterController::class, 'show'])->name('characters.show');
 
-Route::get('/kotak-saran', [MessageController::class, 'create'])->name('messages.create');
-Route::post('/kotak-saran', [MessageController::class, 'store'])
+Route::get('/suggestions', [MessageController::class, 'create'])->name('messages.create');
+Route::post('/suggestions', [MessageController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('messages.store');
 
+// Redirect legacy Indonesian URLs to their English equivalents
+Route::redirect('/artikel', '/articles', 301);
+Route::redirect('/karakter', '/characters', 301);
+Route::redirect('/kotak-saran', '/suggestions', 301);
+
 /*
 |--------------------------------------------------------------------------
-| Panel Admin GTAVerse
+| GTAVerse Admin Panel
 |--------------------------------------------------------------------------
 */
 

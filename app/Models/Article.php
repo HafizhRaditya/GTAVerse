@@ -24,7 +24,7 @@ class Article extends Model
         ];
     }
 
-    /* ================= Relasi ================= */
+    /* ================= Relationships ================= */
 
     public function author(): BelongsTo
     {
