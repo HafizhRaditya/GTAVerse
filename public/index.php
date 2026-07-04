@@ -17,4 +17,9 @@ require __DIR__.'/../vendor/autoload.php';
 /** @var Application $app */
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
+// The public path is wherever this front controller lives. This keeps the
+// app working on shared hosts where the web root (e.g. htdocs) is not the
+// "public" folder inside the application directory.
+$app->usePublicPath(__DIR__);
+
 $app->handleRequest(Request::capture());
