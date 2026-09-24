@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $character->name . ' — GTAVerse Character Profile')
-@section('meta_description', \Illuminate\Support\Str::limit($character->bio, 150))
+@section('meta_description', \Illuminate\Support\Str::limit($character->bio ?: $character->name, 150))
 
 @section('content')
 <section class="mx-auto max-w-6xl px-6 pb-24 pt-36">

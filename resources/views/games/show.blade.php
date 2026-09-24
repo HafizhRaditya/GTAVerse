@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $game->title . ' — GTAVerse')
-@section('meta_description', \Illuminate\Support\Str::limit($game->description, 150))
+@section('meta_description', \Illuminate\Support\Str::limit($game->description ?: $game->tagline ?: $game->title, 150))
 
 @php
     $heroImages = [

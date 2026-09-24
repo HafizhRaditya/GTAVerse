@@ -62,7 +62,7 @@ class CharacterController extends Controller
     {
         $data = $this->validated($request, $character);
 
-        if (blank($data['slug'])) {
+        if (blank($data['slug'] ?? null)) {
             unset($data['slug']);
         }
 

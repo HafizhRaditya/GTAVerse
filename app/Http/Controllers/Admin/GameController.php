@@ -54,7 +54,7 @@ class GameController extends Controller
     {
         $data = $this->validated($request, $game);
 
-        if (blank($data['slug'])) {
+        if (blank($data['slug'] ?? null)) {
             unset($data['slug']);
         }
 

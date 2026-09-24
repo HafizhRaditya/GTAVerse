@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $article->title . ' — GTAVerse')
-@section('meta_description', $article->excerpt)
+@section('meta_description', $article->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($article->body), 150))
 
 @php
     $articleImages = ['/images/article-placeholder-1.png', '/images/article-placeholder-2.png'];

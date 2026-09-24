@@ -40,7 +40,7 @@ class CategoryController extends Controller
     {
         $data = $this->validated($request, $category);
 
-        if (blank($data['slug'])) {
+        if (blank($data['slug'] ?? null)) {
             unset($data['slug']);
         }
 

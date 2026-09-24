@@ -68,7 +68,7 @@ class ArticleController extends Controller
     {
         $data = $this->validated($request, $article);
 
-        if (blank($data['slug'])) {
+        if (blank($data['slug'] ?? null)) {
             unset($data['slug']);
         }
 
